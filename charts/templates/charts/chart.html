@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_scripts %}
+    <script src={% static "charts/js/chart.js" %}></script>
+{% endblock %}
+{% block head %}
+    Random Chart
+{% endblock %}
+{% block head_h1 %}
+    Random Charts
+{% endblock %}
+{% block body %}
+    <div class="col-sm-6">
+        <canvas id="random-chart" width="400" height="400"></canvas>
+    </div>
+{% endblock %}
+
+{% block jquery_functions %}
+    <script>
+        setRandomChart("{% url 'chart-api:random-chart-data' %}");
+    </script>
+{% endblock %}
