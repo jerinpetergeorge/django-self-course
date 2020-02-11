@@ -1,0 +1,21 @@
+{% extends 'django_select2/base.html' %}
+{% block head_h1 %}Sample Head 1{% endblock %}
+{% block body %}
+    <label for="foo">Choose a car:</label>
+    <select id="foo" class="js-example-basic-single" name="state" style="width: 200px">
+        <option value="AL">Option 1</option>
+        <option value="AL">Option 2</option>
+        <option value="AL">Option 3</option>
+        <option value="AL">Option 4</option>
+        <option value="AL">Option 5</option>
+        <option value="AL">Option 5</option>
+        <option value="WY">Option 6</option>
+    </select>
+{% endblock %}
+{% block jquery_functions %}
+    <script>
+        $(document).ready(function () {
+            $('.js-example-basic-single').select2();
+        });
+    </script>
+{% endblock %}

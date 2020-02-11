@@ -26,6 +26,7 @@ INSTALLED_APPS = [
 
     # custom apps
     'charts',
+    'django_select2',
 
     # third party apps
 
