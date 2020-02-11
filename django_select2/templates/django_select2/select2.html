@@ -1,21 +1,32 @@
 {% extends 'django_select2/base.html' %}
+{% load static %}
 {% block head_h1 %}Sample Head 1{% endblock %}
 {% block body %}
-    <label for="foo">Choose a car:</label>
-    <select id="foo" class="js-example-basic-single" name="state" style="width: 200px">
-        <option value="AL">Option 1</option>
-        <option value="AL">Option 2</option>
-        <option value="AL">Option 3</option>
-        <option value="AL">Option 4</option>
-        <option value="AL">Option 5</option>
-        <option value="AL">Option 5</option>
-        <option value="WY">Option 6</option>
-    </select>
+    <label for="foo">Sample label:</label><br>
+    <select id="foo" class="js-data-example-ajax" style="width: 50%"></select>
 {% endblock %}
 {% block jquery_functions %}
     <script>
-        $(document).ready(function () {
-            $('.js-example-basic-single').select2();
+        $('.js-data-example-ajax').select2({
+            ajax: {
+                url: 'api/v1/albums/',
+                data: getQueryParamData,
+                processResults: processAPIResponse,
+                cache: true,
+                minimumInputLength: 1
+            }
         });
+
+        function getQueryParamData(params) {
+            return {
+                term: params.term,
+                page: params.page || 1
+            }
+        }
+
+        function processAPIResponse(data, params) {
+            params.page = params.page || 1;
+            return data
+        }
     </script>
 {% endblock %}
